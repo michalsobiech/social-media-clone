@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "fb-clone/auth",
-    "dateExported": "2023-08-30T20:30:53.166Z",
+    "dateExported": "2023-09-01T20:58:24.041Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -14,7 +14,7 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-08-30T15:03:58.817Z",
-            "modified": "2023-08-30T20:29:36.907Z",
+            "modified": "2023-08-30T21:46:56.506Z",
             "headers": [],
             "params": [],
             "body": {
@@ -23,7 +23,7 @@
                 "form": [
                     {
                         "name": "firstName",
-                        "value": "TestFname"
+                        "value": "TestFname1"
                     },
                     {
                         "name": "lastName",
@@ -44,6 +44,34 @@
                     {
                         "name": "gender",
                         "value": "male"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "50ff3b4a-f65a-4f08-a5f0-6361817e2696",
+            "colId": "2945e69c-86ea-460f-a245-e4cdc2bb09d8",
+            "containerId": "",
+            "name": "Login",
+            "url": "http://localhost:/api/auth/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-09-01T20:13:31.720Z",
+            "modified": "2023-09-01T20:47:00.309Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "email",
+                        "value": "test_email@wp.pl"
+                    },
+                    {
+                        "name": "password",
+                        "value": "TestPass1@"
                     }
                 ]
             },

@@ -4,6 +4,7 @@ import {
   BAD_REQUEST,
   CONFLICT,
   CREATED,
+  SUCCESS,
 } from "../constants/HttpStatusCodes.js";
 import User from "../models/User.js";
 import CustomError from "../utils/CustomError.js";
@@ -63,6 +64,50 @@ router.post("/register", async (req, res, next) => {
     });
 
     res.status(CREATED).send({ message: "User registered successfully" });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/login", async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      throw new CustomError(BAD_REQUEST, "Missing required fields");
+    }
+
+    if (!isNaN(parseFloat(email)) || !isNaN(parseFloat(password))) {
+      throw new CustomError(BAD_REQUEST, "Invalid data type");
+    }
+
+    const user = await User.findOne({ email: email });
+
+    if (!user) {
+      throw new CustomError(BAD_REQUEST, "Credentials are invalid");
+    }
+
+    const bcryptResult = await bcrypt.compare(password, user.hashedPassword);
+
+    if (!bcryptResult) {
+      throw new CustomError(BAD_REQUEST, "Credentials are invalid");
+    }
+
+    if (req.session.userId) {
+      return res.status(BAD_REQUEST).send({ error: "Already authenticated" });
+    } else {
+      req.session.regenerate((err) => {
+        if (err) return next(err);
+
+        req.session.userId = user.id;
+
+        req.session.save((err) => {
+          if (err) return next(err);
+
+          res.status(SUCCESS).send({ message: "Authenticated successfully" });
+        });
+      });
+    }
   } catch (error) {
     next(error);
   }
