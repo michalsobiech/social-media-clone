@@ -113,4 +113,22 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
+router.post("/logout", async (req, res, next) => {
+  try {
+    if (!req.session.userId) {
+      throw new CustomError(BAD_REQUEST, "No session");
+    }
+
+    req.session.destroy((err) => {
+      if (err) {
+        next(err);
+      } else {
+        res.status(SUCCESS).send({ message: "Logged out successfully" });
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default router;
