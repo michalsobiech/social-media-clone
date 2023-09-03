@@ -1,7 +1,6 @@
 import LoginForm from "@/pages/Login/LoginForm";
 import { ReactElement } from "react";
 import { Link } from "react-router-dom";
-import logo from "/logo.svg";
 
 export default function Landing(): ReactElement {
   return (
@@ -9,7 +8,7 @@ export default function Landing(): ReactElement {
       <div className="flex h-full w-full max-w-md flex-col items-center gap-10 p-4 lg:h-fit lg:max-w-full lg:flex-row lg:items-start lg:justify-center lg:gap-24 lg:p-0">
         <div className="max-w-lg">
           <img
-            src={logo}
+            src="/logo-text.svg"
             className="-ml-5 w-full max-w-md"
             alt="facebook - clone logo"
           />

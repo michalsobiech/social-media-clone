@@ -1,13 +1,12 @@
 import { ReactElement } from "react";
 import { Link } from "react-router-dom";
 import LoginForm from "./LoginForm";
-import logo from "/logo.svg";
 
 export default function Login(): ReactElement {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center bg-white md:bg-gray-100 lg:justify-center">
       <img
-        src={logo}
+        src="/logo-text.svg"
         className="mx-auto w-full max-w-sm"
         alt="Facebook - clone logo"
       />
