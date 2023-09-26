@@ -4,5 +4,5 @@ import { ReactElement } from "react";
 export default function Home(): ReactElement {
   // const navigate = useNavigate();
 
-  return <div>Home</div>;
+  return <div>Główna</div>;
 }

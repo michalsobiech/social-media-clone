@@ -1,14 +1,14 @@
 import { ReactElement } from "react";
+import { Outlet } from "react-router-dom";
+import NavBar from "../NavBar";
 
-type Props = {
-  children: ReactElement;
-};
-
-export default function RootLayout({ children }: Props): ReactElement {
+export default function RootLayout(): ReactElement {
   return (
-    <div>
-      <h1>Root Layout</h1>
-      {children}
-    </div>
+    <>
+      <NavBar />
+      <div className="h-full bg-fb-gray-800 pt-14">
+        <Outlet />
+      </div>
+    </>
   );
 }

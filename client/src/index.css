@@ -15,6 +15,7 @@ body {
 
 #root {
   @apply h-full;
+  font-family: "Open Sans";
 }
 
 h1,
@@ -27,19 +28,19 @@ h6 {
 }
 
 h1 {
-  @apply text-5xl my-7;
+  @apply my-7 text-5xl;
 }
 
 h2 {
-  @apply text-3xl my-5;
+  @apply my-5 text-3xl;
 }
 
 h3 {
-  @apply text-xl my-2;
+  @apply my-2 text-xl;
 }
 
 h4 {
-  @apply text-base my-1;
+  @apply my-1 text-base;
 }
 
 h5 {
