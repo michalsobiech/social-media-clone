@@ -5,6 +5,7 @@ import {
   CONFLICT,
   CREATED,
   SUCCESS,
+  UNAUTHORIZED,
 } from "../constants/HttpStatusCodes.js";
 import User from "../models/User.js";
 import CustomError from "../utils/CustomError.js";
@@ -126,6 +127,18 @@ router.post("/logout", async (req, res, next) => {
         res.status(SUCCESS).send({ message: "Logged out successfully" });
       }
     });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/me", async (req, res, next) => {
+  try {
+    if (!req.session.userId) {
+      throw new CustomError(UNAUTHORIZED, "Unauthenticated");
+    }
+
+    res.status(SUCCESS).send({ message: "Authenticated" });
   } catch (error) {
     next(error);
   }
