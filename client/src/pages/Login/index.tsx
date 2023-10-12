@@ -4,7 +4,7 @@ import LoginForm from "./LoginForm";
 
 export default function Login(): ReactElement {
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center bg-white md:bg-gray-100 lg:justify-center">
+    <div className="flex h-screen w-full flex-col items-center justify-center bg-white md:bg-gray-100 lg:justify-center">
       <img
         src="/logo-text.svg"
         className="mx-auto w-full max-w-sm"

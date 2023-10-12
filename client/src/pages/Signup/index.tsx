@@ -4,7 +4,7 @@ import SignupForm from "./SignupForm";
 
 export default function Signup(): ReactElement {
   return (
-    <div className="flex h-full w-full items-center justify-center bg-white md:bg-gray-100">
+    <div className="flex h-screen w-full items-center justify-center bg-white md:bg-gray-100">
       <div className="flex h-full w-full max-w-sm flex-col md:h-fit">
         <img
           src="/logo-text.svg"
