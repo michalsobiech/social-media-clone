@@ -12,23 +12,17 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import MainLayout from "./components/MainLayout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<RootLayout />}>
-        <Route path="" element={<MainLayout />}>
-          <Route index element={<Home />} />
-          <Route
-            path="friends"
-            element={<div className="h-full">Znajomi</div>}
-          />
-          <Route
-            path="community"
-            element={<div className="h-full">Społeczność</div>}
-          />
-        </Route>
+        <Route index element={<Home />} />
+        <Route path="friends" element={<div className="h-full">Znajomi</div>} />
+        <Route
+          path="community"
+          element={<div className="h-full">Społeczność</div>}
+        />
         <Route path="profile" element={<div className="h-full">Profil</div>} />
       </Route>
       <Route path="login" element={<Login />} />

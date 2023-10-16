@@ -1,12 +1,12 @@
+import NavBar from "@/components/NavBar";
 import { ReactElement } from "react";
 import { Outlet } from "react-router-dom";
-import NavBar from "../NavBar";
 
 export default function RootLayout(): ReactElement {
   return (
     <>
       <NavBar />
-      <div className="h-full bg-fb-gray-800 pt-14">
+      <div className="min-h-screen bg-fb-gray-800 pt-14">
         <Outlet />
       </div>
     </>
