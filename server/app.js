@@ -5,6 +5,7 @@ import session from "express-session";
 import errorHandler from "./middlewares/errorHandler.js";
 import authRouter from "./routes/authRouter.js";
 import mongoose from "mongoose";
+import cors from "cors";
 
 dotenv.config();
 
@@ -23,6 +24,12 @@ mongoose
     console.log(error);
   });
 
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
