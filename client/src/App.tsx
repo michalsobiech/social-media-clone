@@ -6,6 +6,7 @@ import NotFound from "@/pages/NotFound";
 import ResetPassword from "@/pages/ResetPassword";
 import Signup from "@/pages/Signup";
 import { ReactElement } from "react";
+import { AuthProvider } from "@/contexts/AuthContext";
 import {
   Route,
   RouterProvider,
@@ -35,7 +36,11 @@ const router = createBrowserRouter(
 );
 
 function App(): ReactElement {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 }
 
 export default App;

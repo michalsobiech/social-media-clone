@@ -1,9 +1,14 @@
+import { useAuth } from "@/contexts/AuthContext";
 import { ReactElement } from "react";
+import { Navigate } from "react-router-dom";
 import PostList, { PostListType } from "./PostList";
-// import { useNavigate } from "react-router-dom";
 
 export default function Home(): ReactElement {
-  // const navigate = useNavigate();
+  const [auth] = useAuth();
+
+  if (!auth) {
+    return <Navigate to={"/login"} />;
+  }
 
   return (
     <div className="flex w-full justify-center px-2">
