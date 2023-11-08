@@ -1,10 +1,10 @@
-import { useAuth } from "@/contexts/AuthContext";
 import { ReactElement } from "react";
-import { Navigate } from "react-router-dom";
 import PostList, { PostListType } from "./PostList";
+import { useAuth } from "@/contexts/AuthContext";
+import { Navigate } from "react-router-dom";
 
 export default function Home(): ReactElement {
-  const [auth] = useAuth();
+  const { auth } = useAuth();
 
   if (!auth) {
     return <Navigate to={"/login"} />;

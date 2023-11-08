@@ -6,7 +6,10 @@ import {
   useState,
 } from "react";
 
-type AuthContextType = [boolean, (state: boolean) => void];
+type AuthContextType = {
+  auth: boolean;
+  setAuth: (state: boolean) => void;
+};
 
 type AuthProviderProps = {
   children: ReactNode;
@@ -24,7 +27,8 @@ export function useAuth(): AuthContextType {
 }
 
 export function AuthProvider({ children }: AuthProviderProps): ReactNode {
-  const [authenticated, setAuthenticated] = useState(false);
+  const [auth, setAuth] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function authMe() {
@@ -36,16 +40,19 @@ export function AuthProvider({ children }: AuthProviderProps): ReactNode {
         },
       });
 
-      if (response.ok) {
-        setAuthenticated(true);
+      if (response.status === 200) {
+        setAuth(true);
       }
+
+      setLoading(false);
     }
+
     authMe();
   }, []);
 
-  const contextValue: AuthContextType = [authenticated, setAuthenticated];
+  const contextValue: AuthContextType = { auth, setAuth };
 
-  return (
+  return !loading ? (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
-  );
+  ) : null;
 }
