@@ -22,7 +22,6 @@ export default function LoginForm(): ReactNode {
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     if (email?.trim() === "" || password?.trim() === "") {
-      console.error("One of the fields is empty");
       return;
     }
 
