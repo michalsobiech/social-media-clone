@@ -8,7 +8,7 @@ import {
   UNAUTHORIZED,
 } from "../constants/HttpStatusCodes.js";
 import User from "../models/User.js";
-import CustomError from "../utils/CustomError.js";
+import APIError from "../utils/APIError.js";
 import {
   isEmailValid,
   isPasswordValid,
@@ -29,7 +29,7 @@ router.post("/register", async (req, res, next) => {
       !birthDate ||
       !gender
     ) {
-      throw new CustomError(BAD_REQUEST, "Missing required fields");
+      throw new APIError(BAD_REQUEST, "Missing required fields");
     }
 
     if (
@@ -39,15 +39,15 @@ router.post("/register", async (req, res, next) => {
       !isNaN(parseFloat(password)) ||
       !isValidISO(birthDate)
     ) {
-      throw new CustomError(BAD_REQUEST, "Invalid data type");
+      throw new APIError(BAD_REQUEST, "Invalid data type");
     }
 
     if (!isEmailValid(email) || !isPasswordValid(password)) {
-      throw new CustomError(BAD_REQUEST, "User input is invalid");
+      throw new APIError(BAD_REQUEST, "User input is invalid");
     }
 
     if (await User.exists({ email })) {
-      throw new CustomError(CONFLICT, "Email is taken");
+      throw new APIError(CONFLICT, "Email is taken");
     }
 
     birthDate = new Date(birthDate);
@@ -75,27 +75,27 @@ router.post("/login", async (req, res, next) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      throw new CustomError(BAD_REQUEST, "Missing required fields");
+      throw new APIError(BAD_REQUEST, "Missing required fields");
     }
 
     if (!isNaN(parseFloat(email)) || !isNaN(parseFloat(password))) {
-      throw new CustomError(BAD_REQUEST, "Invalid data type");
+      throw new APIError(BAD_REQUEST, "Invalid data type");
     }
 
     const user = await User.findOne({ email: email });
 
     if (!user) {
-      throw new CustomError(BAD_REQUEST, "Credentials are invalid");
+      throw new APIError(BAD_REQUEST, "Credentials are invalid");
     }
 
     const bcryptResult = await bcrypt.compare(password, user.hashedPassword);
 
     if (!bcryptResult) {
-      throw new CustomError(BAD_REQUEST, "Credentials are invalid");
+      throw new APIError(BAD_REQUEST, "Credentials are invalid");
     }
 
     if (req.session.userId) {
-      return res.status(BAD_REQUEST).send({ error: "Already authenticated" });
+      throw new APIError(BAD_REQUEST, "Already authenticated");
     } else {
       req.session.regenerate((err) => {
         if (err) return next(err);
@@ -117,7 +117,7 @@ router.post("/login", async (req, res, next) => {
 router.post("/logout", async (req, res, next) => {
   try {
     if (!req.session.userId) {
-      throw new CustomError(BAD_REQUEST, "No session");
+      throw new APIError(BAD_REQUEST, "No session");
     }
 
     req.session.destroy((err) => {
@@ -135,7 +135,7 @@ router.post("/logout", async (req, res, next) => {
 router.post("/me", async (req, res, next) => {
   try {
     if (!req.session.userId) {
-      throw new CustomError(UNAUTHORIZED, "Unauthenticated");
+      throw new APIError(UNAUTHORIZED, "Unauthenticated");
     }
 
     res.status(SUCCESS).send({ message: "Authenticated" });

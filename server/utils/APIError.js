@@ -1,4 +1,4 @@
-export default class CustomError extends Error {
+export default class APIError extends Error {
   /**
    * @param {number} statusCode
    * @param {string} message
