@@ -76,7 +76,6 @@ export default function LoginForm(): ReactNode {
         name="password"
         className="w-full rounded-md border border-solid border-gray-300 p-2 "
         placeholder="Hasło"
-        value={"TestPass1@"}
         required
       />
       <input
