@@ -25,6 +25,7 @@ mongoose
     console.log(error);
   });
 
+app.disable("x-powered-by");
 app.use(
   cors({
     origin: true,
@@ -48,7 +49,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       path: "/",
-      secure: false,
+      secure: false || process.env.NODE_ENV === "production",
       httpOnly: true,
       // maxAge: 7 days
       maxAge: 1000 * 60 * 60 * 24 * 7,
