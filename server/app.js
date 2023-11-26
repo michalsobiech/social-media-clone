@@ -7,6 +7,7 @@ import authRouter from "./routes/authRouter.js";
 import mongoose from "mongoose";
 import cors from "cors";
 import { NOT_FOUND } from "./constants/HttpStatusCodes.js";
+import logger from "./middlewares/logger.js";
 
 dotenv.config();
 
@@ -64,6 +65,6 @@ app.use((req, res) => {
   res.json({ message: "Route not found" });
 });
 
-app.use(errorHandler);
+app.use(logger, errorHandler);
 
 app.listen(port);

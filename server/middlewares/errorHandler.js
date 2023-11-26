@@ -3,15 +3,13 @@ import { INTERNAL_SERVER_ERROR } from "../constants/HttpStatusCodes.js";
 import APIError from "../utils/APIError.js";
 
 /**
- * @param {express.ErrorRequestHandler} error
+ * @param {APIError} error
  * @param {express.Request} req
  * @param {express.Response} res
  * @param {express.NextFunction} next
  */
 const errorHandler = (error, req, res, next) => {
-  console.log(error);
-
-  if (error instanceof APIError === false) {
+  if (!(error instanceof APIError)) {
     return res
       .status(INTERNAL_SERVER_ERROR)
       .send({ message: "Internal Server Error" });
