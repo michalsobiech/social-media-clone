@@ -27,7 +27,7 @@ const logger = createLogger({
 export default function (error, req, res, next) {
   if (process.env.NODE_ENV !== "production") {
     console.log(error);
-    next();
+    next(error);
     return;
   }
 
