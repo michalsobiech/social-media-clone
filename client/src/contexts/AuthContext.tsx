@@ -54,5 +54,7 @@ export function AuthProvider({ children }: AuthProviderProps): ReactNode {
 
   return !loading ? (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
-  ) : null;
+  ) : (
+    <div className="h-screen w-full bg-fb-gray-700"></div>
+  );
 }
