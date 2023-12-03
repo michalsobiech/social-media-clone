@@ -68,3 +68,5 @@ app.use((req, res) => {
 app.use(logger, errorHandler);
 
 app.listen(port);
+
+export default app;
