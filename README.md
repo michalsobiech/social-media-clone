@@ -1,3 +1,12 @@
+> [!IMPORTANT]
+> The project was divided into a frontend and backend repositories.
+>
+> Frontend - https://github.com/michalsobiech/social-media-clone-frontend
+>
+> Backend - https://github.com/michalsobiech/social-media-clone-backend
+
+---
+
 # Social media clone
 
 A **Social media clone** is a MERN stack web application.
@@ -32,8 +41,6 @@ npm run install-all
 
 To run both the client and server in development mode, use:
 
-
-
 ```
 npm run dev
 ```
@@ -59,11 +66,9 @@ npm run dev:server
 | [![Typescript][Typescript]][Typescript-url]       |                                             |                                    |
 | [![Tailwind css][Tailwindcss]][Tailwindcss-url]   |                                             |                                    |
 
-
 ## License
 
 [MIT](/LICENSE)
-
 
 <!-- Images -->
 [Vite]: https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E
